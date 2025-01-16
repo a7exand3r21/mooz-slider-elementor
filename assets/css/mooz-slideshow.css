@@ -1,0 +1,649 @@
+/* Base styles */
+.elementor-widget-mooz_slideshow *,
+.elementor-widget-mooz_slideshow *::after,
+.elementor-widget-mooz_slideshow *::before {
+    box-sizing: border-box;
+}
+
+.elementor-widget-mooz_slideshow {
+    --color-text: #fff;
+    --color-bg: #000;
+    --color-link: #fff;
+    --color-link-hover: #fff;
+    --color-frame: #ff5ba4;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    z-index: 1;
+}
+
+.elementor-widget-mooz_slideshow.has-overlay-header {
+    margin-top: var(--slider-negative-height, -80vh);
+    padding-top: var(--slider-height, 80vh);
+}
+
+.mooz-slideshow-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: transparent;
+    transition: background 0.3s ease;
+}
+
+.mooz-slideshow-header.scrolled {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.mooz-slideshow-header .menu-container {
+    padding: 20px;
+    width: 100%;
+}
+
+.mooz-slideshow-header .menu {
+    display: flex;
+    justify-content: flex-end;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mooz-slideshow-header .menu li {
+    margin: 0 15px;
+    position: relative;
+}
+
+.mooz-slideshow-header .menu a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 5px 0;
+}
+
+.mooz-slideshow-header .menu a:hover {
+    opacity: 0.8;
+}
+
+/* Slideshow Container */
+.elementor-widget-mooz_slideshow .slideshow {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Slides */
+.elementor-widget-mooz_slideshow .slide {
+    margin: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.elementor-widget-mooz_slideshow .slide--current {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Image Wrapper */
+.elementor-widget-mooz_slideshow .slide__img-wrap {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    will-change: transform;
+    overflow: hidden;
+    -webkit-backspace-visibility: hidden;
+}
+
+.elementor-widget-mooz_slideshow .slide__img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: 50% 50%;
+    will-change: transform;
+}
+
+/* Caption */
+.elementor-widget-mooz_slideshow .slide__caption {
+    position: relative;
+    padding: 0 10vw;
+    cursor: default;
+    width: 100%;
+    z-index: 10;
+}
+
+.elementor-widget-mooz_slideshow .slides__caption-headline {
+    font-size: 6.5vw;
+    font-size: clamp(2rem,6.5vw,6rem);
+    line-height: 0.9;
+    margin: 0;
+    text-transform: uppercase;
+    font-weight: normal;
+}
+
+/* Text Animation Rows */
+.elementor-widget-mooz_slideshow .text-row {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    white-space: nowrap;
+}
+
+.elementor-widget-mooz_slideshow .text-row > span {
+    display: block;
+    position: relative;
+    padding: 0.5rem 0;
+}
+
+/* Typography Styles */
+.elementor-widget-mooz_slideshow .slides__caption-headline em,
+.elementor-widget-mooz_slideshow .slides__caption-headline strong {
+    font-size: 6.75vw;
+    font-size: clamp(2rem,7vw,6rem);
+}
+
+.elementor-widget-mooz_slideshow .slides__caption-headline em {
+    font-weight: 400;
+    font-style: italic;
+}
+
+.elementor-widget-mooz_slideshow .slides__caption-headline strong {
+    font-weight: 400;
+}
+
+/* Links */
+.elementor-widget-mooz_slideshow .slides__caption-link {
+    display: inline-block;
+    margin-top: 1rem;
+    text-indent: 0.2vw;
+    font-size: clamp(1rem, 5vw, 1.75rem);
+    font-weight: 300;
+    text-decoration: none;
+    color: var(--color-link);
+    position: relative;
+}
+
+.elementor-widget-mooz_slideshow .slides__caption-link::after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 1px;
+    background: currentColor;
+    left: 0;
+    bottom: -25%;
+    transform: scale3d(0,1,1);
+    opacity: 0;
+    transform-origin: 0% 50%;
+    transition: transform 0.3s, opacity 0s 0.3s;
+}
+
+.elementor-widget-mooz_slideshow .slides__caption-link:hover::after {
+    opacity: 1;
+    transition: transform 0.3s;
+    transform: scale3d(1,1,1);
+}
+
+/* Navigation */
+.elementor-widget-mooz_slideshow .slides-nav {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    z-index: 100;
+    transition: all 0.3s ease;
+}
+
+/* Position variants */
+.elementor-widget-mooz_slideshow .slides-nav--bottom-center {
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.elementor-widget-mooz_slideshow .slides-nav--bottom-right {
+    bottom: 2rem;
+    right: 2rem;
+}
+
+.elementor-widget-mooz_slideshow .slides-nav--bottom-left {
+    bottom: 2rem;
+    left: 2rem;
+}
+
+.elementor-widget-mooz_slideshow .slides-nav--center-right {
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    flex-direction: column;
+}
+
+.elementor-widget-mooz_slideshow .slides-nav--center-left {
+    left: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    flex-direction: column;
+}
+
+/* Navigation Shapes */
+/* Arrow shape (default) */
+.elementor-widget-mooz_slideshow .slides-nav--arrow .slides-nav__button svg {
+    width: 55px;
+    height: 24px;
+}
+
+/* Circle shape */
+.elementor-widget-mooz_slideshow .slides-nav--circle .slides-nav__button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--color-text);
+    position: relative;
+}
+
+.elementor-widget-mooz_slideshow .slides-nav--circle .slides-nav__button::before {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid var(--color-text);
+    border-right: 2px solid var(--color-text);
+}
+
+.elementor-widget-mooz_slideshow .slides-nav--circle .slides-nav__button--prev::before {
+    transform: rotate(-135deg);
+    left: 16px;
+    top: 14px;
+}
+
+.elementor-widget-mooz_slideshow .slides-nav--circle .slides-nav__button--next::before {
+    transform: rotate(45deg);
+    left: 12px;
+    top: 14px;
+}
+
+.elementor-widget-mooz_slideshow .slides-nav--circle .slides-nav__button svg {
+    display: none;
+}
+
+/* Navigation size variations */
+.elementor-widget-mooz_slideshow .slides-nav[data-nav-size="0.5"] .slides-nav__button {
+    transform: scale(0.5);
+}
+
+.elementor-widget-mooz_slideshow .slides-nav[data-nav-size="1.5"] .slides-nav__button {
+    transform: scale(1.5);
+}
+
+.elementor-widget-mooz_slideshow .slides-nav[data-nav-size="2"] .slides-nav__button {
+    transform: scale(2);
+}
+
+/* Adjust spacing for vertical navigation */
+.elementor-widget-mooz_slideshow .slides-nav--center-left .slides-nav__button,
+.elementor-widget-mooz_slideshow .slides-nav--center-right .slides-nav__button {
+    margin: 1rem 0;
+}
+
+/* Adjust index display for vertical navigation */
+.elementor-widget-mooz_slideshow .slides-nav--center-left .slides-nav__index,
+.elementor-widget-mooz_slideshow .slides-nav--center-right .slides-nav__index {
+    margin: 1rem 0;
+    transform: rotate(90deg);
+}
+
+.elementor-widget-mooz_slideshow .slides-nav__button {
+    display: block;
+    cursor: pointer;
+    background: none;
+    border: 0;
+    width: 55px;
+    height: 24px;
+    padding: 0;
+    margin: 0 0.75rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.elementor-widget-mooz_slideshow .slides-nav svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    fill: #fff;
+}
+
+.elementor-widget-mooz_slideshow .slides-nav__index {
+    margin-left: 2rem;
+    white-space: nowrap;
+    color: var(--color-text);
+    border: 1px solid var(--color-text);
+    border-radius: 50%;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.elementor-widget-mooz_slideshow .slides-nav__index > span {
+    width: 2rem;
+}
+
+.elementor-widget-mooz_slideshow .slides-nav__index-current {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Mobile Responsive Styles */
+@media screen and (max-width: 768px) {
+    .elementor-widget-mooz_slideshow .slideshow {
+        min-height: 400px;
+    }
+    
+    .elementor-widget-mooz_slideshow .slides__caption-headline {
+        font-size: clamp(1.5rem, 4vw, 3rem);
+    }
+    
+    .elementor-widget-mooz_slideshow .slides__caption-link {
+        font-size: clamp(0.875rem, 3vw, 1.25rem);
+    }
+    
+    .elementor-widget-mooz_slideshow .slide__caption {
+        padding: 0 5vw;
+    }
+    
+    .elementor-widget-mooz_slideshow .slides-nav {
+        bottom: 1rem;
+    }
+    
+    .elementor-widget-mooz_slideshow .slides-nav__button {
+        width: 40px;
+        height: 20px;
+    }
+    
+    .elementor-widget-mooz_slideshow .slides-nav__index {
+        padding: 0.75rem 1rem;
+        margin-left: 1rem;
+    }
+}
+
+/* Tablet Responsive Styles */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .elementor-widget-mooz_slideshow .slideshow {
+        min-height: 500px;
+    }
+    
+    .elementor-widget-mooz_slideshow .slides__caption-headline {
+        font-size: clamp(1.75rem, 5vw, 4rem);
+    }
+}
+
+/* Loading State */
+.elementor-widget-mooz_slideshow.loading::before,
+.elementor-widget-mooz_slideshow.loading::after {
+    content: '';
+    position: fixed;
+    z-index: 1000;
+}
+
+.elementor-widget-mooz_slideshow.loading::before {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--color-bg);
+}
+
+.elementor-widget-mooz_slideshow.loading::after {
+    top: 50%;
+    left: 50%;
+    width: 60px;
+    height: 60px;
+    margin: -30px 0 0 -30px;
+    border-radius: 50%;
+    opacity: 0.4;
+    background: var(--color-link);
+    animation: loaderAnim 0.7s linear infinite alternate forwards;
+}
+
+@keyframes loaderAnim {
+    to {
+        opacity: 1;
+        transform: scale3d(0.5,0.5,1);
+    }
+}
+
+/* Focus States */
+.elementor-widget-mooz_slideshow a:focus {
+    outline: none;
+    background: rgba(255,255,255,0.1);
+}
+
+.elementor-widget-mooz_slideshow a:focus:not(:focus-visible) {
+    background: transparent;
+}
+
+.elementor-widget-mooz_slideshow a:focus-visible {
+    outline: 2px solid var(--color-link);
+    background: transparent;
+}
+
+/* Editor Mode Styles */
+.elementor-editor-active .elementor-widget-mooz_slideshow .slide {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.elementor-editor-active .elementor-widget-mooz_slideshow .slide:not(.slide--current) {
+    opacity: 0.5;
+}
+
+/* Navigation color transitions */
+.elementor-widget-mooz_slideshow .slides-nav__button svg,
+.elementor-widget-mooz_slideshow .slides-nav--circle .slides-nav__button,
+.elementor-widget-mooz_slideshow .slides-nav--circle .slides-nav__button::before,
+.elementor-widget-mooz_slideshow .slides-nav__index {
+    transition: all 0.3s ease;
+}
+
+/* Remove default color */
+.elementor-widget-mooz_slideshow .slides-nav svg {
+    fill: currentColor;
+}
+
+.elementor-widget-mooz_slideshow .slides-nav--circle .slides-nav__button {
+    border: 2px solid currentColor;
+}
+
+.elementor-widget-mooz_slideshow .slides-nav--circle .slides-nav__button::before {
+    border-top: 2px solid currentColor;
+    border-right: 2px solid currentColor;
+}
+
+.elementor-widget-mooz_slideshow .slides-nav__index {
+    color: currentColor;
+    border: 1px solid currentColor;
+}
+
+/* Hover effects */
+.elementor-widget-mooz_slideshow .slides-nav__button:hover {
+    opacity: 0.8;
+}
+
+/* Active state */
+.elementor-widget-mooz_slideshow .slides-nav__button:active {
+    transform: scale(0.95);
+}
+
+/* Focus state */
+.elementor-widget-mooz_slideshow .slides-nav__button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+}
+
+/* Navigation color custom properties */
+.elementor-widget-mooz_slideshow .slides-nav {
+    --nav-color: #ffffff;
+    --nav-hover-color: #cccccc;
+}
+
+.elementor-widget-mooz_slideshow .nav-color-transition .slides-nav__button svg {
+    fill: var(--nav-color);
+}
+
+.elementor-widget-mooz_slideshow .nav-color-transition .slides-nav--circle .slides-nav__button {
+    border-color: var(--nav-color);
+}
+
+.elementor-widget-mooz_slideshow .nav-color-transition .slides-nav--circle .slides-nav__button::before {
+    border-color: var(--nav-color);
+}
+
+.elementor-widget-mooz_slideshow .nav-color-transition .slides-nav__index {
+    color: var(--nav-color);
+    border-color: var(--nav-color);
+}
+
+/* Hover states */
+.elementor-widget-mooz_slideshow .nav-color-transition .slides-nav__button:hover svg {
+    fill: var(--nav-hover-color);
+}
+
+.elementor-widget-mooz_slideshow .nav-color-transition .slides-nav--circle .slides-nav__button:hover {
+    border-color: var(--nav-hover-color);
+}
+
+.elementor-widget-mooz_slideshow .nav-color-transition .slides-nav--circle .slides-nav__button:hover::before {
+    border-color: var(--nav-hover-color);
+}
+
+.elementor-widget-mooz_slideshow .nav-color-transition .slides-nav__index:hover {
+    color: var(--nav-hover-color);
+    border-color: var(--nav-hover-color);
+}
+
+/* Header Menu Positioning */
+.elementor-widget-mooz_slideshow .mooz-slideshow-header.menu-position-left .menu-container {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.elementor-widget-mooz_slideshow .mooz-slideshow-header.menu-position-center .menu-container {
+    display: flex;
+    justify-content: center;
+}
+
+.elementor-widget-mooz_slideshow .mooz-slideshow-header.menu-position-right .menu-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Base menu styles */
+.elementor-widget-mooz_slideshow .mooz-slideshow-header .menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Remove old positioning styles */
+.elementor-widget-mooz_slideshow .menu-position-left .mooz-slideshow-header .menu,
+.elementor-widget-mooz_slideshow .menu-position-center .mooz-slideshow-header .menu,
+.elementor-widget-mooz_slideshow .menu-position-right .mooz-slideshow-header .menu {
+    justify-content: inherit;
+}
+
+/* Mobile adjustments */
+@media screen and (max-width: 768px) {
+    .elementor-widget-mooz_slideshow .mooz-slideshow-header .menu-container {
+        justify-content: center !important;
+    }
+    
+    .elementor-widget-mooz_slideshow .mooz-slideshow-header .menu {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .elementor-widget-mooz_slideshow .mooz-slideshow-header .menu li {
+        margin: 5px 0;
+    }
+}
+
+/* Menu Items Styling */
+.elementor-widget-mooz_slideshow .mooz-slideshow-header .menu li {
+    margin: 0 15px;
+    position: relative;
+}
+
+.elementor-widget-mooz_slideshow .mooz-slideshow-header .menu a {
+    text-decoration: none;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 5px 0;
+}
+
+/* Hover Effects */
+/* Fade effect */
+.elementor-widget-mooz_slideshow .menu-hover-fade .menu a:hover {
+    opacity: 0.7;
+}
+
+/* Underline effect */
+.elementor-widget-mooz_slideshow .menu-hover-underline .menu a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.elementor-widget-mooz_slideshow .menu-hover-underline .menu a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* Overline effect */
+.elementor-widget-mooz_slideshow .menu-hover-overline .menu a::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    top: 0;
+    left: 0;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.elementor-widget-mooz_slideshow .menu-hover-overline .menu a:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* Active Menu Item */
+.elementor-widget-mooz_slideshow .mooz-slideshow-header .menu .current-menu-item > a {
+    font-weight: bold;
+}
+
+/* Slideshow Container */
+.elementor-widget-mooz_slideshow .slideshow {
+    height: var(--slider-height, 80vh);
+    min-height: var(--slider-min-height, 400px);
+}
